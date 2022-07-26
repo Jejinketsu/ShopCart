@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { Provider } from "react-redux";
 import Sqlite from "./src/database/sqlite";
-import Home from "./src/pages/Home";
 import store from "./src/redux/store";
+import Routes from "./src/routes";
 
 export default function App() {
     useEffect(() => {
@@ -15,7 +15,7 @@ export default function App() {
 
     return (
         <Provider store={store}>
-            <Home />
+            <Routes />
         </Provider>
     );
 }
