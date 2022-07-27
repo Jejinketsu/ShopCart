@@ -1,28 +1,17 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import { useAppDispatch, useAppSelector } from "../hooks/redux";
-import { decrement, increment } from "../redux/slices/counter";
 
-const Home = () => {
-    const counter = useAppSelector((state) => state.counter);
-    const dispatch = useAppDispatch();
-
+const Home = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <StatusBar style="auto" />
-            <Text>Counter: {counter.value}</Text>
+            <Text>Home Screen</Text>
             <TouchableOpacity
                 style={styles.button}
-                onPress={() => dispatch(increment())}
+                onPress={() => navigation.navigate("Purchases")}
             >
-                <Text>+ 1</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-                style={styles.button}
-                onPress={() => dispatch(decrement())}
-            >
-                <Text>- 1</Text>
+                <Text>go to purchases</Text>
             </TouchableOpacity>
         </View>
     );

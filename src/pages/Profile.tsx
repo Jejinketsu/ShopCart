@@ -1,23 +1,12 @@
-import {
-    View,
-    Text,
-    StyleSheet,
-    StatusBar,
-    TouchableOpacity,
-} from "react-native";
 import React from "react";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { StatusBar } from "expo-status-bar";
 
-const Purchases = ({ navigation }) => {
+const Profile = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <StatusBar style="auto" />
-            <Text>Purchases Screen</Text>
-            <TouchableOpacity
-                style={styles.button}
-                onPress={() => navigation.goBack()}
-            >
-                <Text>go to home</Text>
-            </TouchableOpacity>
+            <Text>Profile Screen</Text>
         </View>
     );
 };
@@ -36,4 +25,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Purchases;
+export default Profile;

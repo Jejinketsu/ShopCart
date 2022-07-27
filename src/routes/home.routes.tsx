@@ -4,11 +4,11 @@ import Purchases from "../pages/Purchases";
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
-export default function AppRoutes() {
+export default function HomeRoutes() {
     return (
         <Navigator screenOptions={{ headerShown: false }}>
-            <Screen name="Home" component={Home} />
-            <Screen name="Purchase" component={Purchases} />
+            <Screen name="StackHome" component={Home} />
+            <Screen name="Purchases" component={Purchases} />
         </Navigator>
     );
 }
