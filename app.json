@@ -1,11 +1,11 @@
 {
-  "expo": {
-    "qwner": "jejinketsu",
-    "name": "shopcart",
-    "slug": "shopcart",
-    "version": "1.0.0",
-    "assetBundlePatterns": [
-      "**/*"
-    ]
-  }
+    "expo": {
+        "owner": "jejinketsu",
+        "name": "shopcart",
+        "slug": "shopcart",
+        "version": "1.0.0",
+        "assetBundlePatterns": [
+            "**/*"
+        ]
+    }
 }
