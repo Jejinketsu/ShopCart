@@ -13,7 +13,7 @@ const Home = ({ navigation }) => {
                 },
                 {
                     iconName: "list",
-                    onPress: () => {},
+                    onPress: () => navigation.navigate("CreatedLists"),
                     title: "Listas",
                 },
                 {
