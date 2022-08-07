@@ -1,4 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import CreatedLists from "../pages/CreatedLists";
 import CreatePurchase from "../pages/CreatePurchase";
 import Home from "../pages/Home";
 import Purchases from "../pages/Purchases";
@@ -26,6 +27,11 @@ export default function HomeRoutes() {
                 options={{
                     headerTitle: "Rastrear Compra",
                 }}
+            />
+            <Screen
+                name="CreatedLists"
+                component={CreatedLists}
+                options={{ headerTitle: "Listas Criadas" }}
             />
         </Navigator>
     );

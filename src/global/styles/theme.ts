@@ -12,9 +12,9 @@ export default {
         SECONDARY_1: "#E1E1E1",
         SECONDARY_2: "#BCBCBC",
 
-        SUCCESS: "#50FF62",
-        DANGER: "#FF5D5D",
-        ALERT: "#F9CB33",
+        SUCCESS: "#81BE00",
+        DANGER: "#BE0B00",
+        ALERT: "#FFBB12",
         DISABLED: "#EAEAEA",
 
         LIGHT: "#FFFFFF",
