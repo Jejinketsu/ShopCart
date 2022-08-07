@@ -30,9 +30,14 @@ export default function Root() {
                         />
                     );
                 },
+                header: () => {}
             })}
         >
-            <Screen name="Home" component={HomeRoutes} />
+            <Screen
+                name="Home"
+                component={HomeRoutes}
+                options={{ title: "Valor em caixa" }}
+            />
             <Screen name="Perfil" component={Profile} />
             <Screen name="Backup" component={Backup} />
             <Screen name="More" component={More} />

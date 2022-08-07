@@ -1,4 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import CreatePurchase from "../pages/CreatePurchase";
 import Home from "../pages/Home";
 import Purchases from "../pages/Purchases";
 
@@ -6,9 +7,18 @@ const { Navigator, Screen } = createNativeStackNavigator();
 
 export default function HomeRoutes() {
     return (
-        <Navigator screenOptions={{ headerShown: false }}>
-            <Screen name="StackHome" component={Home} />
+        <Navigator screenOptions={{ headerShown: true }}>
+            <Screen
+                name="StackHome"
+                component={Home}
+                options={{ headerTitle: "Home" }}
+            />
             <Screen name="Purchases" component={Purchases} />
+            <Screen
+                name="CreatePurchase"
+                component={CreatePurchase}
+                options={{ headerTitle: "Nova Compra" }}
+            />
         </Navigator>
     );
 }

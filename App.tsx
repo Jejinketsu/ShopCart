@@ -3,6 +3,8 @@ import { Provider } from "react-redux";
 import Sqlite from "./src/database/sqlite";
 import store from "./src/redux/store";
 import Routes from "./src/routes";
+import { ThemeProvider } from "styled-components/native";
+import theme from "./src/global/styles/theme";
 
 export default function App() {
     useEffect(() => {
@@ -15,7 +17,9 @@ export default function App() {
 
     return (
         <Provider store={store}>
-            <Routes />
+            <ThemeProvider theme={theme}>
+                <Routes />
+            </ThemeProvider>
         </Provider>
     );
 }

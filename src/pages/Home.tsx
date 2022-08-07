@@ -1,34 +1,34 @@
 import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { StatusBar } from "expo-status-bar";
+
+import HomeTemplate from "../components/templates/Home";
 
 const Home = ({ navigation }) => {
     return (
-        <View style={styles.container}>
-            <StatusBar style="auto" />
-            <Text>Home Screen</Text>
-            <TouchableOpacity
-                style={styles.button}
-                onPress={() => navigation.navigate("Purchases")}
-            >
-                <Text>go to purchases</Text>
-            </TouchableOpacity>
-        </View>
+        <HomeTemplate
+            NavigationButtonsProp={[
+                {
+                    iconName: "shopping-basket",
+                    onPress: () => navigation.navigate("CreatePurchase"),
+                    title: "Nova Compra",
+                },
+                {
+                    iconName: "list",
+                    onPress: () => {},
+                    title: "Listas",
+                },
+                {
+                    iconName: "clock",
+                    onPress: () => {},
+                    title: "Histórico",
+                },
+                {
+                    iconName: "chart-line",
+                    onPress: () => {},
+                    title: "Gastos",
+                },
+            ]}
+        />
     );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: "#fff",
-        alignItems: "center",
-        justifyContent: "center",
-    },
-    button: {
-        backgroundColor: "blue",
-        padding: 10,
-        borderColor: "white",
-    },
-});
 
 export default Home;
