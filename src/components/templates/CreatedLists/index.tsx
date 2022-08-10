@@ -1,10 +1,7 @@
 import React from "react";
 import InputText from "../../atoms/inputText";
-import CardList from '../../molecules/CardList';
-import {
-    Container,
-    ContentList,
-} from "./styles";
+import CardList from "../../molecules/CardList";
+import { Container, ContentList } from "./styles";
 
 const CreatedListsTemplate = () => {
     return (
@@ -12,10 +9,10 @@ const CreatedListsTemplate = () => {
             <InputText placeholder="Buscar" iconName="search" />
 
             <ContentList showsVerticalScrollIndicator={false}>
-                <CardList />
-                <CardList />
-                <CardList />
-                <CardList />
+                <CardList title="Compras da feira" price="25,50" />
+                <CardList title="Supermercado" price="95,50" />
+                <CardList title="Pizza da domingo" price="52,50" />
+                <CardList title="PC novo" price="3500,50" />
             </ContentList>
         </Container>
     );

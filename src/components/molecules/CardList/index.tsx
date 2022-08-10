@@ -1,10 +1,22 @@
 import { FontAwesome5 } from "@expo/vector-icons";
 import React from "react";
-import { View } from 'react-native';
+import { View } from "react-native";
 import ButtonIcon from "../../atoms/ButtonIcon";
-import { ItemCard, Icon, ContentInfo, StatusText, OpaqueText, TitleText } from "./styles";
+import {
+    ContentInfo,
+    Icon,
+    ItemCard,
+    OpaqueText,
+    StatusText,
+    TitleText,
+} from "./styles";
 
-const index = () => {
+type Props = {
+    title: string;
+    price: string;
+};
+
+const index = ({ title, price }: Props) => {
     return (
         <ItemCard>
             <Icon>
@@ -16,14 +28,14 @@ const index = () => {
             </Icon>
 
             <ContentInfo>
-                <TitleText>Compras da feira</TitleText>
+                <TitleText>{title}</TitleText>
                 <View
                     style={{
                         flexDirection: "row",
                         justifyContent: "space-between",
                     }}
                 >
-                    <OpaqueText>R$ 25,50</OpaqueText>
+                    <OpaqueText>R$ {price}</OpaqueText>
                     <StatusText color="SUCCESS">Em Progresso</StatusText>
                 </View>
             </ContentInfo>
