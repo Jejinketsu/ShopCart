@@ -8,6 +8,7 @@ export const ButtonComponent = styled.TouchableOpacity<TouchInterface>`
     padding: 15px;
     border-radius: 10px;
     align-items: center;
+    width: 100%;
 `;
 
 export const ButtonText = styled(Text).attrs(() => ({

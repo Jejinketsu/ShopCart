@@ -9,7 +9,6 @@ export const Container = styled.View`
 export const ContentCard = styled.View`
     background-color: #fff;
     width: 100%;
-    max-height: 58%;
     padding: 14px;
     margin-bottom: 24px;
     border-radius: 7px;

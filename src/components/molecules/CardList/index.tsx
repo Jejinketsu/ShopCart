@@ -1,10 +1,17 @@
 import { FontAwesome5 } from "@expo/vector-icons";
 import React from "react";
-import { View } from 'react-native';
+import { View } from "react-native";
 import ButtonIcon from "../../atoms/ButtonIcon";
-import { ItemCard, Icon, ContentInfo, StatusText, OpaqueText, TitleText } from "./styles";
+import {
+    ItemCard,
+    Icon,
+    ContentInfo,
+    StatusText,
+    OpaqueText,
+    TitleText,
+} from "./styles";
 
-const index = () => {
+const CardList = () => {
     return (
         <ItemCard>
             <Icon>
@@ -38,4 +45,4 @@ const index = () => {
     );
 };
 
-export default index;
+export default CardList;

@@ -45,8 +45,9 @@ export const NavigationButtonBox = styled.View`
 export const NavigationButton = styled(ButtonIcon).attrs(() => ({
     bgColor: "ACCENTED_0",
     color: "ACCENTED_1",
+    size: 30,
 }))`
-    padding: 14px;
+    padding: 5px;
     border-radius: 7px;
 `;
 
