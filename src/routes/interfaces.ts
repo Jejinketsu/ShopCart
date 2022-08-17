@@ -9,6 +9,7 @@ export type RootStackParamList = {
     CreatedLists?: undefined;
     Purchases?: undefined;
     PurchaseTracking?: undefined;
+    ListDetails?: undefined;
 };
 
 export type PageProps = NativeStackScreenProps<
