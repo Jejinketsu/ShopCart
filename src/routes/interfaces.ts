@@ -6,8 +6,10 @@ export type RootStackParamList = {
     Backup?: undefined;
     More?: undefined;
     CreatePurchase?: undefined;
+    CreatedLists?: undefined;
     Purchases?: undefined;
     PurchaseTracking?: undefined;
+    ListDetails?: undefined;
 };
 
 export type PageProps = NativeStackScreenProps<

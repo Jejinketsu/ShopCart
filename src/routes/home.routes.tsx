@@ -1,5 +1,6 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import CreatedLists from "../pages/CreatedLists";
+import ListDetails from "../pages/ListDetails";
 import CreatePurchase from "../pages/CreatePurchase";
 import Home from "../pages/Home";
 import Purchases from "../pages/Purchases";
@@ -32,6 +33,12 @@ export default function HomeRoutes() {
                 name="CreatedLists"
                 component={CreatedLists}
                 options={{ headerTitle: "Listas Criadas" }}
+            />
+            
+            <Screen
+                name="ListDetails"
+                component={ListDetails}
+                options={{ headerTitle: "Detalhes da lista" }}
             />
         </Navigator>
     );
