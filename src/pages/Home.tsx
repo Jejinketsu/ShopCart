@@ -1,8 +1,9 @@
 import React from "react";
 
 import HomeTemplate from "../components/templates/Home";
+import { PageProps } from "../routes/interfaces";
 
-const Home = ({ navigation }) => {
+const Home = ({ navigation }: PageProps) => {
     return (
         <HomeTemplate
             NavigationButtonsProp={[

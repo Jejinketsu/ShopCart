@@ -2,8 +2,12 @@ import React from "react";
 import { ButtonContainer, Container, ContentCard } from "./styles";
 import InputText from "../../atoms/inputText";
 import Button from "../../atoms/Button";
+import { PageProps } from "../../../routes/interfaces";
+import { ICreatePurchaseProps } from "./interfaces";
 
-const CreatePurchaseTemplate = () => {
+const CreatePurchaseTemplate = ({
+    CreateButtonProps,
+}: ICreatePurchaseProps) => {
     return (
         <Container>
             <ContentCard>
@@ -11,9 +15,9 @@ const CreatePurchaseTemplate = () => {
                 <InputText keyboardType="numeric" title="Orçamento:" />
                 <ButtonContainer>
                     <Button
-                        onPress={() => {}}
                         label="ADICIONAR PRODUTOS"
                         color="ACCENTED_0"
+                        {...CreateButtonProps}
                     />
                 </ButtonContainer>
             </ContentCard>

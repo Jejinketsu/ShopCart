@@ -8,9 +8,10 @@ const ButtonIcon = ({
     color,
     bgColor,
     size,
+    ...rest
 }: IButtonIconProps) => {
     return (
-        <ButtonComponent color={bgColor} onPress={onPress}>
+        <ButtonComponent color={bgColor} onPress={onPress} {...rest}>
             <ButtonIconContent size={size} color={color} name={iconName} />
         </ButtonComponent>
     );

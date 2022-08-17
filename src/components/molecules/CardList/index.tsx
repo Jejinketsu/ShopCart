@@ -16,7 +16,7 @@ type Props = {
     price: string;
 };
 
-const index = ({ title, price }: Props) => {
+const CardList = ({ title, price }: Props) => {
     return (
         <ItemCard>
             <Icon>
@@ -50,4 +50,4 @@ const index = ({ title, price }: Props) => {
     );
 };
 
-export default index;
+export default CardList;

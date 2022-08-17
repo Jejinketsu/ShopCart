@@ -3,6 +3,7 @@ import { GlobalColorInterface } from "../../../global/interfaces/colors";
 
 export interface ITextProps extends TextProps {
     color?: GlobalColorInterface["color"];
+    letterCase?: "uppercase" | "lowercase" | "capitalize";
     typeScale?:
         | "h1"
         | "h2"

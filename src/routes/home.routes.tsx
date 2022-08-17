@@ -3,6 +3,7 @@ import CreatedLists from "../pages/CreatedLists";
 import CreatePurchase from "../pages/CreatePurchase";
 import Home from "../pages/Home";
 import Purchases from "../pages/Purchases";
+import PurchaseTracking from "../pages/PurchaseTracking";
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -19,6 +20,13 @@ export default function HomeRoutes() {
                 name="CreatePurchase"
                 component={CreatePurchase}
                 options={{ headerTitle: "Nova Compra" }}
+            />
+            <Screen
+                name="PurchaseTracking"
+                component={PurchaseTracking}
+                options={{
+                    headerTitle: "Rastrear Compra",
+                }}
             />
             <Screen
                 name="CreatedLists"
