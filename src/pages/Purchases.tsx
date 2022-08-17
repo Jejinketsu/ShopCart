@@ -1,39 +1,40 @@
-import {
-    View,
-    Text,
-    StyleSheet,
-    StatusBar,
-    TouchableOpacity,
-} from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
+import CreatedListsTemplate from "../components/templates/CreatedLists";
+import { useAppDispatch, useAppSelector } from "../hooks/redux";
+import { PageProps } from "../routes/interfaces";
 
-const Purchases = ({ navigation }) => {
+import { fetchPurchases } from "../redux/slices/purchase";
+import { useForm } from "react-hook-form";
+
+const Purchases = ({ navigation }: PageProps) => {
+    const { control, handleSubmit } = useForm();
+    const { isFullfilled, purchaseList } = useAppSelector(
+        (state) => state.purchase
+    );
+    const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        if (!isFullfilled) {
+            dispatch(fetchPurchases());
+        }
+    }, [isFullfilled]);
+
     return (
-        <View style={styles.container}>
-            <StatusBar style="auto" />
-            <Text>Purchases Screen</Text>
-            <TouchableOpacity
-                style={styles.button}
-                onPress={() => navigation.goBack()}
-            >
-                <Text>go to home</Text>
-            </TouchableOpacity>
-        </View>
+        <CreatedListsTemplate
+            InputSearchProps={{
+                name: "search",
+                control,
+                title: "Pesquisar",
+                iconName: "search",
+            }}
+            CardListProps={purchaseList.map((purchase) => ({
+                title: purchase.name,
+                subtitle: purchase.budget,
+                onPress: () => {},
+                badge: purchase.statusId,
+            }))}
+        />
     );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: "#fff",
-        alignItems: "center",
-        justifyContent: "center",
-    },
-    button: {
-        backgroundColor: "blue",
-        padding: 10,
-        borderColor: "white",
-    },
-});
 
 export default Purchases;

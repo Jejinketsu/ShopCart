@@ -1,21 +1,24 @@
 import React from "react";
+import { FlatList } from "react-native-gesture-handler";
 import InputText from "../../atoms/inputText";
-import CardList from '../../molecules/CardList';
-import {
-    Container,
-    ContentList,
-} from "./styles";
+import CardList from "../../molecules/CardList";
+import { CreatedListsProps } from "./interfaces";
+import { Container, ContentList } from "./styles";
 
-const CreatedListsTemplate = () => {
+const CreatedListsTemplate = ({
+    CardListProps,
+    InputSearchProps,
+}: CreatedListsProps) => {
     return (
         <Container>
-            <InputText placeholder="Buscar" iconName="search" />
+            <InputText {...InputSearchProps} />
 
             <ContentList showsVerticalScrollIndicator={false}>
-                <CardList />
-                <CardList />
-                <CardList />
-                <CardList />
+                <FlatList
+                    data={CardListProps}
+                    keyExtractor={(item, index) => item.title + index}
+                    renderItem={({ item }) => <CardList {...item} />}
+                />
             </ContentList>
         </Container>
     );

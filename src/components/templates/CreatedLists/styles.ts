@@ -3,7 +3,7 @@ import Text from "../../atoms/Text";
 
 export const Container = styled.View`
     flex: 1;
-    background-color: #F6F7F9;
+    background-color: #f6f7f9;
     padding: 18px 18px 0px 18px;
 `;
 
@@ -16,10 +16,8 @@ export const ContentCard = styled.View`
     elevation: 4;
 `;
 
-export const ContentList = styled.ScrollView`
+export const ContentList = styled.View`
     width: 100%;
     margin: 20px 0px;
     border-radius: 7px;
 `;
-
-

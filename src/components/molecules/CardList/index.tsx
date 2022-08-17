@@ -2,6 +2,7 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import React from "react";
 import { View } from "react-native";
 import ButtonIcon from "../../atoms/ButtonIcon";
+import { CardListProps } from "./interfaces";
 import {
     ItemCard,
     Icon,
@@ -11,7 +12,7 @@ import {
     TitleText,
 } from "./styles";
 
-const CardList = () => {
+const CardList = ({ title, subtitle, badge, onPress }: CardListProps) => {
     return (
         <ItemCard>
             <Icon>
@@ -23,22 +24,22 @@ const CardList = () => {
             </Icon>
 
             <ContentInfo>
-                <TitleText>Compras da feira</TitleText>
+                <TitleText>{title}</TitleText>
                 <View
                     style={{
                         flexDirection: "row",
                         justifyContent: "space-between",
                     }}
                 >
-                    <OpaqueText>R$ 25,50</OpaqueText>
-                    <StatusText color="SUCCESS">Em Progresso</StatusText>
+                    <OpaqueText>{subtitle}</OpaqueText>
+                    <StatusText color="SUCCESS">{badge}</StatusText>
                 </View>
             </ContentInfo>
 
             <ButtonIcon
                 iconName="edit"
                 color="PRIMARY_1"
-                onPress={() => {}}
+                onPress={onPress}
                 size={24}
             />
         </ItemCard>

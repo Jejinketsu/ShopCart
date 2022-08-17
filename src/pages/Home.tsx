@@ -14,7 +14,7 @@ const Home = ({ navigation }: PageProps) => {
                 },
                 {
                     iconName: "list",
-                    onPress: () => navigation.navigate("CreatedLists"),
+                    onPress: () => navigation.navigate("Purchases"),
                     title: "Listas",
                 },
                 {

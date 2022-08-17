@@ -2,17 +2,18 @@ import React from "react";
 import { ButtonContainer, Container, ContentCard } from "./styles";
 import InputText from "../../atoms/inputText";
 import Button from "../../atoms/Button";
-import { PageProps } from "../../../routes/interfaces";
 import { ICreatePurchaseProps } from "./interfaces";
 
 const CreatePurchaseTemplate = ({
+    InputTitleProps,
+    InputBudgetProps,
     CreateButtonProps,
 }: ICreatePurchaseProps) => {
     return (
         <Container>
             <ContentCard>
-                <InputText title="Nova Compra:" />
-                <InputText keyboardType="numeric" title="Orçamento:" />
+                <InputText {...InputTitleProps} />
+                <InputText {...InputBudgetProps} />
                 <ButtonContainer>
                     <Button
                         label="ADICIONAR PRODUTOS"
