@@ -10,7 +10,6 @@
         "migrate": "sudo npx prisma migrate dev --schema ./src/database/prisma/schema.prisma --name "
     },
     "dependencies": {
-        "@nozbe/watermelondb": "^0.24.0",
         "@prisma/client": "4.0.0",
         "@react-navigation/bottom-tabs": "^6.3.2",
         "@react-navigation/drawer": "^6.4.3",
