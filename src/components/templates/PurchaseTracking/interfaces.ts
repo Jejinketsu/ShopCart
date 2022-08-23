@@ -1,5 +1,6 @@
 import { IButtonProps } from "../../atoms/Button/interface";
 import { IButtonIconProps } from "../../atoms/ButtonIcon/interface";
+import { IInputTextProps } from "../../atoms/inputText/interface";
 import {
     ModalRefInterface,
     ModalSliderProps,
@@ -12,6 +13,9 @@ export interface IPurchaseTracking {
     PlusButtonProps: IButtonIconProps;
     ModalProps: ModalSliderProps;
     ModalRef: React.RefObject<ModalRefInterface>;
+    ProductInputProps: IInputTextProps;
+    PriceInputProps: IInputTextProps;
+    QuantityInputProps: IInputTextProps;
 }
 
 export interface StatusText {

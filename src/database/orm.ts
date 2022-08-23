@@ -32,8 +32,14 @@ class LocalDatabase {
     ): Promise<DB[T]> {
         const sql = `INSERT INTO ${table} (${Object.keys(entry).join(",")}) 
             VALUES (${Object.keys(entry).map(() => "?")})`;
-        const result = await this.client.execSql(sql, Object.values(entry));
-        return result.rows.item(0) as unknown as DB[T];
+        await this.client.execSql(sql, Object.values(entry));
+        const lastInserted = await this.client.execSql(
+            "SELECT last_insert_rowid()"
+        );
+        const lastId: number =
+            lastInserted.rows._array[0]["last_insert_rowid()"];
+        const [result] = await this.select(table, { id: lastId });
+        return result;
     }
 
     async createMany<T extends TABLES>(

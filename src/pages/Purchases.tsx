@@ -5,6 +5,7 @@ import { PageProps } from "../routes/interfaces";
 
 import { fetchPurchases } from "../redux/slices/purchase";
 import { useForm } from "react-hook-form";
+import { STATUS, translateStatus } from "../consts/status";
 
 const Purchases = ({ navigation }: PageProps) => {
     const { control, handleSubmit } = useForm();
@@ -31,7 +32,7 @@ const Purchases = ({ navigation }: PageProps) => {
                 title: purchase.name,
                 subtitle: purchase.budget,
                 onPress: () => {},
-                badge: purchase.statusId,
+                badge: translateStatus(purchase.statusId as STATUS),
             }))}
         />
     );

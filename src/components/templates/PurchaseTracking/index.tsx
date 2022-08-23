@@ -30,6 +30,9 @@ const PurchaseTrackingTemplate = ({
     DoneButtonProps,
     AddButtonProps,
     PlusButtonProps,
+    ProductInputProps,
+    PriceInputProps,
+    QuantityInputProps,
     ModalProps,
     ModalRef,
 }: IPurchaseTracking) => {
@@ -78,10 +81,10 @@ const PurchaseTrackingTemplate = ({
             </Container>
             <ModalSlider ref={ModalRef} {...ModalProps}>
                 <ModalContainer>
-                    <InputText title="Produto" />
+                    <InputText {...ProductInputProps} />
                     <InputContainer>
-                        <InputText title="Preço" />
-                        <InputText title="Quantidade" />
+                        <InputText {...PriceInputProps} />
+                        <InputText {...QuantityInputProps} />
                     </InputContainer>
                     <AddButton {...AddButtonProps} />
                 </ModalContainer>
