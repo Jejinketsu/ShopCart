@@ -45,12 +45,7 @@ export const purchaseSlice = createSlice({
 export const fetchPurchases = createAsyncThunk(
     "purchases/fulfilled",
     async () => {
-        const purchases = await localDatabase.select("Purchases", null, [
-            {
-                table: "Status",
-                fields: { thisTable: "statusId", joinTable: "id" },
-            },
-        ]);
+        const purchases = await localDatabase.select("Purchases", null);
         console.log("purchases", purchases);
         return purchases;
     }

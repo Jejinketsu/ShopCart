@@ -1,5 +1,5 @@
 import { View, Text } from "react-native";
-import React from "react";
+import React, { useRef } from "react";
 import CreatePurchaseTemplate from "../components/templates/CreatePurchase";
 import { PageProps } from "../routes/interfaces";
 
@@ -8,6 +8,8 @@ import { createPurchase } from "../redux/slices/purchase";
 
 import { useForm, SubmitHandler } from "react-hook-form";
 import localDatabase from "../database/orm";
+import { STATUS } from "../consts/status";
+import { IModalPopUpRefProps } from "../components/organisms/ModalPopUp/interfaces";
 
 type IFormInput = {
     name: string;
@@ -15,18 +17,20 @@ type IFormInput = {
 };
 
 const CreatePurchase = ({ navigation }: PageProps) => {
-    const { control, handleSubmit, register } = useForm<IFormInput>();
+    const { control, handleSubmit } = useForm<IFormInput>();
+    const modalRef = useRef<IModalPopUpRefProps>(null);
     const dispatch = useAppDispatch();
 
     const onSubmit: SubmitHandler<IFormInput> = async (data) => {
         console.log("data", data);
-        const newPurchase = {
+        /* const newPurchase = {
             name: data.name,
             budget: Number(data.budget),
             userId: 1,
-            statusId: 1,
+            statusId: STATUS.CREATED,
         };
-        dispatch(createPurchase(newPurchase));
+        dispatch(createPurchase(newPurchase)); */
+        modalRef?.current?.open();
         //navigation.navigate("PurchaseTracking")
     };
 
@@ -44,6 +48,24 @@ const CreatePurchase = ({ navigation }: PageProps) => {
             }}
             CreateButtonProps={{
                 onPress: handleSubmit(onSubmit),
+            }}
+            ModalPopUpProps={{
+                ref: modalRef,
+                props: {
+                    title: "Compra criada com sucesso!",
+                    description: "Deseja iniciar o acompanhamento da compra?",
+                    ConfirmButtonProps: {
+                        label: "Sim",
+                        onPress: () => navigation.replace("PurchaseTracking"),
+                        color: "ACCENTED_0",
+                    },
+                    CancelButtonProps: {
+                        label: "Não",
+                        onPress: () => navigation.pop(),
+                        color: "ACCENTED_0",
+                        type: "outline",
+                    },
+                },
             }}
         />
     );
