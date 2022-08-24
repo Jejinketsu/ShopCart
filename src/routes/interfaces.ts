@@ -16,3 +16,9 @@ export type PageProps = NativeStackScreenProps<
     RootStackParamList,
     keyof RootStackParamList
 >;
+
+export type AuthenticationStackProps = {
+    Login: undefined,
+    Register: undefined,
+    Root: undefined;
+};
