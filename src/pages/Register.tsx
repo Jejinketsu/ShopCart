@@ -1,12 +1,11 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import React from "react";
+import RegisterTemplate from '../components/templates/Authentication/Register';
+
 
 const Register = () => {
-  return (
-    <View>
-      <Text>Register</Text>
-    </View>
-  )
-}
+    return (
+        <RegisterTemplate />
+    );
+};
 
-export default Register
+export default Register;

@@ -6,4 +6,10 @@ export interface IFormInput {
     password: string;
 }
 
+export interface IFormRegister {
+    name: string;
+    email: string;
+    password: string;
+}
+
 export type LoginProps = NativeStackNavigationProp<AuthenticationStackProps, 'Login'>;  

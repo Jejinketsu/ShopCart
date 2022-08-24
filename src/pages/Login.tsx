@@ -1,6 +1,5 @@
 import React from "react";
 import LoginTemplate from '../components/templates/Authentication/Login';
-import { AuthenticationStackProps } from "../routes/interfaces";
 
 const Login = () => {
     return (

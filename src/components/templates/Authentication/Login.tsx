@@ -16,6 +16,10 @@ function Login() {
         console.log("data", data);
         navigation.navigate('Root');
     };
+    
+    function handleRegister() {
+        navigation.navigate('Register');
+    };
 
     return (
         <Container>
@@ -64,7 +68,7 @@ function Login() {
                     <Button
                         label="CADASTRE-SE"
                         color="SECONDARY_0"
-                        onPress={handleSubmit(onSubmit)}
+                        onPress={handleRegister}
                     />
                 </ButtonContainer>
             </FormContainer>
