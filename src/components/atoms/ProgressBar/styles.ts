@@ -1,6 +1,6 @@
+import { LinearGradient } from "expo-linear-gradient";
 import styled from "styled-components/native";
 import { IProgressBarState } from "./interface";
-import LinearGradient from "react-native-linear-gradient";
 
 export const ProgressBarFrame = styled.View`
     width: 100%;
