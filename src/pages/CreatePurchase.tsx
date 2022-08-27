@@ -23,15 +23,14 @@ const CreatePurchase = ({ navigation }: PageProps) => {
 
     const onSubmit: SubmitHandler<IFormInput> = async (data) => {
         console.log("data", data);
-        /* const newPurchase = {
+        const newPurchase = {
             name: data.name,
             budget: Number(data.budget),
             userId: 1,
             statusId: STATUS.CREATED,
         };
-        dispatch(createPurchase(newPurchase)); */
+        dispatch(createPurchase(newPurchase));
         modalRef?.current?.open();
-        //navigation.navigate("PurchaseTracking")
     };
 
     return (

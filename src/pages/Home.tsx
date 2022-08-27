@@ -20,7 +20,7 @@ const Home = ({ navigation }: PageProps) => {
                 {
                     iconName: "clock",
                     onPress: () => {},
-                    title: "Histórico",
+                    title: "His. de Preços",
                 },
                 {
                     iconName: "chart-line",
