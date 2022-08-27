@@ -31,7 +31,10 @@ const Purchases = ({ navigation }: PageProps) => {
             CardListProps={purchaseList.map((purchase) => ({
                 title: purchase.name,
                 subtitle: purchase.budget,
-                onPress: () => {},
+                onPress: () =>
+                    navigation.navigate("PurchaseDetails", {
+                        purchase: purchase,
+                    }),
                 badge: translateStatus(purchase.statusId as STATUS),
             }))}
         />
