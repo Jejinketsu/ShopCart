@@ -8,18 +8,20 @@ export const ButtonComponent = styled.TouchableOpacity<TouchInterface>`
             ? color
                 ? theme.colors[color]
                 : theme.colors.ACCENTED_0
-            : theme.colors.LIGHT};
+            : "transparent"};
     padding: 15px;
     border-radius: 10px;
-    border-width: 3px;
+    border-width: 1px;
     border-color: ${({ theme, color }) =>
         color ? theme.colors[color] : theme.colors.ACCENTED_0};
     align-items: center;
     width: 100%;
 `;
 
-export const ButtonText = styled(Text).attrs(({ type }: TouchInterface) => ({
-    color: type === "solid" ? "ACCENTED_1" : "PRIMARY_1",
-}))<TouchInterface>`
+export const ButtonText = styled(Text).attrs(
+    ({ type, color }: TouchInterface) => ({
+        color: type === "solid" ? "ACCENTED_1" : color || "ACCENTED_1",
+    })
+)<TouchInterface>`
     font-weight: bold;
 `;

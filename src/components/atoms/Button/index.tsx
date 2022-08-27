@@ -10,7 +10,9 @@ const Button = ({
 }: IButtonProps) => {
     return (
         <ButtonComponent color={color} type={type} onPress={onPress}>
-            <ButtonText type={type}>{label}</ButtonText>
+            <ButtonText color={color} type={type}>
+                {label}
+            </ButtonText>
         </ButtonComponent>
     );
 };
