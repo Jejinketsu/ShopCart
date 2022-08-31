@@ -2,51 +2,46 @@ import React, { useRef } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { ModalRefInterface } from "../components/organisms/ModalSlider/interfaces";
 import PurchaseTrackingTemplate from "../components/templates/PurchaseTracking";
+import { useAppDispatch, useAppSelector } from "../hooks/redux";
+import { fetchPurchases } from "../redux/slices/purchase";
 
-const mockProducts = [
-    {
-        name: "Pão de alho",
-        price: "R$ 5,00",
-        status: "SUCCESS",
-    },
-    {
-        name: "Pão de alho",
-        price: "R$ 5,00",
-        status: "SUCCESS",
-    },
-    {
-        name: "Pão de alho",
-        price: "R$ 5,00",
-        status: "SUCCESS",
-    },
-    {
-        name: "Pão de alho",
-        price: "R$ 5,00",
-        status: "SUCCESS",
-    },
-    {
-        name: "Pão de alho",
-        price: "R$ 5,00",
-        status: "SUCCESS",
-    },
-    {
-        name: "Pão de alho",
-        price: "R$ 5,00",
-        status: "SUCCESS",
-    },
-];
+type Producs = {
+    name: string;
+    price: number;
+    status: string;
+};
 
 const PurchaseTracking = () => {
+    const [mockProducts, setMockProducts] = React.useState<Producs[]>([]);
     const { control, handleSubmit } = useForm();
     const modalRef = useRef<ModalRefInterface>(null);
+    const { isFullfilled, purchaseSelected } = useAppSelector(
+        (state) => state.purchase
+    );
+    const dispatch = useAppDispatch();
+
+    React.useEffect(() => {
+        if (!isFullfilled) {
+            dispatch(fetchPurchases());
+        }
+    }, [isFullfilled]);
 
     const onSubmit: SubmitHandler<any> = async (data) => {
-        console.log("data", data);
+        const newProduct:Producs = {
+            name: data.product,
+            status: data.quantity,
+            price: data.price,
+        };
+        setMockProducts((prevState) => {
+            const list = [...prevState, newProduct];
+            return list;
+        });
     };
 
     return (
         <PurchaseTrackingTemplate
             ModalRef={modalRef}
+            purchaseSelected={purchaseSelected}
             ModalProps={{ title: "Novo item", modalHeight: 70 }}
             products={mockProducts}
             ProductInputProps={{ name: "product", title: "Produto", control }}

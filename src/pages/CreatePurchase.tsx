@@ -22,7 +22,7 @@ const CreatePurchase = ({ navigation }: PageProps) => {
     const dispatch = useAppDispatch();
 
     const onSubmit: SubmitHandler<IFormInput> = async (data) => {
-        console.log("data", data);
+        console.log("Produto: ", data);
         const newPurchase = {
             name: data.name,
             budget: Number(data.budget),
@@ -44,6 +44,7 @@ const CreatePurchase = ({ navigation }: PageProps) => {
                 name: "budget",
                 control,
                 title: "Orçamento",
+                keyboardType: 'numeric',
             }}
             CreateButtonProps={{
                 onPress: handleSubmit(onSubmit),

@@ -26,6 +26,7 @@ model Products {
     unity        Unity?         @relation(fields: [unityId], references: [id])
     unityId      Int
     quantity     Int?
+    price        Float
     market       String?
     Transactions Transactions[]
 }

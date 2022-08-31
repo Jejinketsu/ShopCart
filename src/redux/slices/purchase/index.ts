@@ -10,6 +10,7 @@ import { join } from "@prisma/client/runtime";
 const initialState: PurchaseState = {
     isFullfilled: false,
     purchaseList: [],
+    purchaseSelected: {},
 };
 
 export const purchaseSlice = createSlice({
@@ -35,6 +36,7 @@ export const purchaseSlice = createSlice({
         });
         builder.addCase(createPurchase.fulfilled, (state, action) => {
             state.purchaseList.push(action.payload);
+            state.purchaseSelected = action.payload;
         });
         builder.addCase(createPurchase.rejected, (_, action) => {
             console.error(action.error);

@@ -1,3 +1,4 @@
+import { TABLE_TYPE } from "../../../database/sqlite";
 import { IButtonProps } from "../../atoms/Button/interface";
 import { IButtonIconProps } from "../../atoms/ButtonIcon/interface";
 import { IInputTextProps } from "../../atoms/inputText/interface";
@@ -16,6 +17,7 @@ export interface IPurchaseTracking {
     ProductInputProps: IInputTextProps;
     PriceInputProps: IInputTextProps;
     QuantityInputProps: IInputTextProps;
+    purchaseSelected: TABLE_TYPE<'Purchases'>;
 }
 
 export interface StatusText {

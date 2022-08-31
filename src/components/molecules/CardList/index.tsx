@@ -12,7 +12,7 @@ import {
     TitleText,
 } from "./styles";
 
-const CardList = ({ title, subtitle, badge, onPress }: CardListProps) => {
+const CardList = ({ title, subtitle, badge }: CardListProps) => {
     return (
         <ItemCard>
             <Icon>
@@ -39,7 +39,7 @@ const CardList = ({ title, subtitle, badge, onPress }: CardListProps) => {
             <ButtonIcon
                 iconName="edit"
                 color="PRIMARY_1"
-                onPress={onPress}
+                onPress={() => {}}
                 size={24}
             />
         </ItemCard>
