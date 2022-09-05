@@ -1,6 +1,6 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Backup from "../pages/Backup";
-import More from "../pages/More";
+import MoreRoutes from "./more.routes";
 import Profile from "../pages/Profile";
 import HomeRoutes from "./home.routes";
 import { FontAwesome5 } from "@expo/vector-icons";
@@ -30,7 +30,7 @@ export default function Root() {
                         />
                     );
                 },
-                header: () => {}
+                header: () => {},
             })}
         >
             <Screen
@@ -40,7 +40,7 @@ export default function Root() {
             />
             <Screen name="Perfil" component={Profile} />
             <Screen name="Backup" component={Backup} />
-            <Screen name="More" component={More} />
+            <Screen name="More" component={MoreRoutes} />
         </Navigator>
     );
 }

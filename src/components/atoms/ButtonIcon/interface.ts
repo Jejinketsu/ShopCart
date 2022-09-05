@@ -1,11 +1,9 @@
 import { TouchableOpacityProps } from "react-native";
 import { GlobalColorInterface } from "../../../global/interfaces/colors";
-import { FontAwesome } from "@expo/vector-icons";
-
-type icons = keyof typeof FontAwesome.glyphMap;
+import { FontAwesomeIconsType } from "../../../global/interfaces/icons";
 export interface IButtonIconProps extends TouchableOpacityProps {
     onPress: () => void;
-    iconName: icons;
+    iconName: FontAwesomeIconsType;
     color?: GlobalColorInterface["color"];
     bgColor?: GlobalColorInterface["color"];
     size?: number;

@@ -1,15 +1,14 @@
 import * as SQLite from "expo-sqlite";
 import { Asset } from "expo-asset";
 import * as FileSystem from "expo-file-system";
-import * as PrismaClient from "@prisma/client";
+import { Products, Purchases, Transactions, Unity, Users } from "./interfaces";
 
 export type DB = {
-    Products: PrismaClient.Products;
-    Purchases: PrismaClient.Purchases;
-    Users: PrismaClient.Users;
-    Transactions: PrismaClient.Transactions;
-    Unity: PrismaClient.Unity;
-    Status: PrismaClient.Status;
+    Products: Products;
+    Purchases: Purchases;
+    Users: Users;
+    Transactions: Transactions;
+    Unity: Unity;
 };
 
 export type TABLES = keyof DB;

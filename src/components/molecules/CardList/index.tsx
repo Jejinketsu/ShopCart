@@ -12,12 +12,18 @@ import {
     TitleText,
 } from "./styles";
 
-const CardList = ({ title, subtitle, badge }: CardListProps) => {
+const CardList = ({
+    title,
+    subtitle,
+    badge,
+    leftIcon,
+    rightIcon,
+}: CardListProps) => {
     return (
         <ItemCard>
             <Icon>
                 <FontAwesome5
-                    name="shopping-basket"
+                    name={leftIcon || "shopping-basket"}
                     size={30}
                     color="#85878B"
                 />
@@ -25,19 +31,21 @@ const CardList = ({ title, subtitle, badge }: CardListProps) => {
 
             <ContentInfo>
                 <TitleText>{title}</TitleText>
-                <View
-                    style={{
-                        flexDirection: "row",
-                        justifyContent: "space-between",
-                    }}
-                >
-                    <OpaqueText>{subtitle}</OpaqueText>
-                    <StatusText color="SUCCESS">{badge}</StatusText>
-                </View>
+                {subtitle && (
+                    <View
+                        style={{
+                            flexDirection: "row",
+                            justifyContent: "space-between",
+                        }}
+                    >
+                        <OpaqueText>{subtitle}</OpaqueText>
+                        <StatusText color="SUCCESS">{badge}</StatusText>
+                    </View>
+                )}
             </ContentInfo>
 
             <ButtonIcon
-                iconName="edit"
+                iconName={rightIcon || "edit"}
                 color="PRIMARY_1"
                 onPress={() => {}}
                 size={24}
