@@ -9,7 +9,7 @@ const Login = ({ navigation }: PageProps) => {
 
     const onSubmit: SubmitHandler<IFormInput> = async (data) => {
         console.log("data", data);
-        navigation.navigate("Root");
+        //navigation.navigate("Root");
     };
 
     function handleRegister() {

@@ -14,6 +14,7 @@ import Button from "../../atoms/Button";
 
 const LoginTemplate = ({
     title,
+    NameInputProps,
     EmailInputProps,
     PasswordInputProps,
     LoginButtonProps,
@@ -25,6 +26,12 @@ const LoginTemplate = ({
 
             <FormContainer>
                 <Text typeScale="h4">{title || "default"}</Text>
+
+                {NameInputProps && (
+                    <TextField>
+                        <InputText {...NameInputProps} />
+                    </TextField>
+                )}
 
                 <TextField>
                     <InputText {...EmailInputProps} />
@@ -38,9 +45,11 @@ const LoginTemplate = ({
                     <Button {...LoginButtonProps} />
                 </ButtonContainer>
 
-                <ButtonContainer>
-                    <Button {...RegisterButtonProps} />
-                </ButtonContainer>
+                {RegisterButtonProps && (
+                    <ButtonContainer>
+                        <Button {...RegisterButtonProps} />
+                    </ButtonContainer>
+                )}
             </FormContainer>
         </Container>
     );

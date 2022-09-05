@@ -10,6 +10,7 @@ const InputText = ({
     control,
     title,
     iconName,
+    error,
     ...rest
 }: IInputTextProps) => {
     const { field } = useController({
@@ -18,7 +19,7 @@ const InputText = ({
         name,
     });
     return (
-        <Container>
+        <Container error={!!error}>
             {title && <Text color="PRIMARY_1">{title}</Text>}
             <InputContainer>
                 {iconName && (
@@ -31,6 +32,7 @@ const InputText = ({
                     onChangeText={field.onChange}
                 />
             </InputContainer>
+            {error && <Text color="DANGER">{error}</Text>}
         </Container>
     );
 };

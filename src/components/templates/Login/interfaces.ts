@@ -3,10 +3,11 @@ import { IInputTextProps } from "../../atoms/inputText/interface";
 
 export interface LoginProps {
     title: string;
+    NameInputProps?: IInputTextProps;
     EmailInputProps: IInputTextProps;
     PasswordInputProps: IInputTextProps;
     LoginButtonProps: IButtonProps;
-    RegisterButtonProps: IButtonProps;
+    RegisterButtonProps?: IButtonProps;
 }
 
 export interface IFormInput {

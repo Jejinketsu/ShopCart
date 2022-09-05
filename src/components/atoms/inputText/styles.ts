@@ -1,7 +1,11 @@
 import styled from "styled-components/native";
+import { ContainerInterface } from "./interface";
 
-export const Container = styled.View`
+export const Container = styled.View<ContainerInterface>`
     width: 100%;
+    border-bottom-width: 2px;
+    border-bottom-color: ${({ theme, error }) =>
+        error ? theme.colors.DANGER : theme.colors.ACCENTED_0};
 `;
 
 export const InputContainer = styled.View`

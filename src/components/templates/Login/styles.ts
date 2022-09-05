@@ -28,8 +28,6 @@ export const FormContainer = styled.ScrollView.attrs({
 
 export const TextField = styled.View`
     width: 100%;
-    border-color: ${({ theme }) => theme.colors.ACCENTED_0};
-    border-bottom-width: 2px;
     margin-top: 20px;
 `;
 
