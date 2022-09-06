@@ -6,4 +6,5 @@ export interface CardListProps {
     badge?: string | number;
     leftIcon?: FontAwesomeIconsType;
     rightIcon?: FontAwesomeIconsType;
+    onPress?: () => void;
 }

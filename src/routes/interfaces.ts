@@ -4,6 +4,7 @@ import { TABLE_TYPE } from "../database/sqlite";
 export type RootStackParamList = {
     Root?: undefined;
     Home?: undefined;
+    Login?: undefined;
     Register?: undefined;
     Profile?: undefined;
     Backup?: undefined;

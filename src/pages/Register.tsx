@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { IFormRegister } from "../components/templates/Authentication/interface";
 import LoginTemplate from "../components/templates/Login";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { authActions } from "../redux/slices/auth";
-import { useAppDispatch } from "../hooks/redux";
+import { useAppDispatch, useAppSelector } from "../hooks/redux";
 import { PageProps } from "../routes/interfaces";
 
 const Register = ({ navigation }: PageProps) => {
@@ -28,13 +28,20 @@ const Register = ({ navigation }: PageProps) => {
     } = useForm<IFormRegister>({
         resolver: yupResolver(formSchema),
     });
+    const { user } = useAppSelector((state) => state.auth);
     const dispatch = useAppDispatch();
 
     const onSubmit: SubmitHandler<IFormRegister> = (data: IFormRegister) => {
         console.log("data", data);
         dispatch(authActions.createAccount(data));
-        navigation.replace("Root");
     };
+
+    useEffect(() => {
+        if (user) {
+            reset();
+            navigation.navigate("Home");
+        }
+    }, [user]);
 
     return (
         <LoginTemplate

@@ -18,9 +18,10 @@ const CardList = ({
     badge,
     leftIcon,
     rightIcon,
+    onPress = () => {},
 }: CardListProps) => {
     return (
-        <ItemCard>
+        <ItemCard onPress={onPress}>
             <Icon>
                 <FontAwesome5
                     name={leftIcon || "shopping-basket"}
@@ -44,12 +45,14 @@ const CardList = ({
                 )}
             </ContentInfo>
 
-            <ButtonIcon
-                iconName={rightIcon || "edit"}
-                color="PRIMARY_1"
-                onPress={() => {}}
-                size={24}
-            />
+            {rightIcon && (
+                <ButtonIcon
+                    iconName={rightIcon}
+                    color="PRIMARY_1"
+                    onPress={onPress}
+                    size={24}
+                />
+            )}
         </ItemCard>
     );
 };

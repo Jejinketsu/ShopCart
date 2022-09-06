@@ -2,12 +2,15 @@ import { View, Text } from "react-native";
 import React from "react";
 import { Card, Container } from "./styles";
 import { StatusBar } from "expo-status-bar";
+import { MoreProps } from "./interfaces";
 
-const MoreTemplate = () => {
+const MoreTemplate = ({ Cards }: MoreProps) => {
     return (
         <Container>
             <StatusBar />
-            <Card title="hello" leftIcon="sign-out-alt" />
+            {Cards.map((card, index) => (
+                <Card key={index} {...card} />
+            ))}
         </Container>
     );
 };

@@ -1,7 +1,7 @@
 import styled from "styled-components/native";
 import Text from "../../atoms/Text";
 
-export const ItemCard = styled.View`
+export const ItemCard = styled.TouchableOpacity`
     background-color: #fff;
     width: 100%;
     height: 80px;
