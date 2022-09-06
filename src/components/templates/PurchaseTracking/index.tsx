@@ -27,6 +27,8 @@ import {
 
 const PurchaseTrackingTemplate = ({
     products,
+    spended,
+    progress,
     DoneButtonProps,
     AddButtonProps,
     PlusButtonProps,
@@ -41,8 +43,8 @@ const PurchaseTrackingTemplate = ({
         <>
             <Container>
                 <ContentCard>
-                    <OpaqueText>Limite do Orçamento: 70%</OpaqueText>
-                    <ProgressBar progress={70} />
+                    <OpaqueText>Limite do Orçamento: {progress} %</OpaqueText>
+                    <ProgressBar progress={progress <= 100 ? progress : 100}  />
                     <SpendProgressContainer>
                         <SpendProgressBox>
                             <OpaqueText>Estimado:</OpaqueText>
@@ -51,8 +53,8 @@ const PurchaseTrackingTemplate = ({
                         <Text>{">>"}</Text>
                         <SpendProgressBox>
                             <OpaqueText>Gastos:</OpaqueText>
-                            <SpendProgressText status={100 - 50}>
-                                R$ 50,00
+                            <SpendProgressText status={purchaseSelected.budget - spended}>
+                                R$ {spended}
                             </SpendProgressText>
                         </SpendProgressBox>
                     </SpendProgressContainer>
@@ -66,7 +68,7 @@ const PurchaseTrackingTemplate = ({
                             <CardList
                                 title={item.name}
                                 subtitle={`R$ ${item.price}`}
-                                badge={item.status}
+                                badge={`Quantidade: ${item.status}`}
                             />
                         )}
                         ListEmptyComponent={() => (
@@ -89,9 +91,9 @@ const PurchaseTrackingTemplate = ({
             <ModalSlider ref={ModalRef} {...ModalProps}>
                 <ModalContainer>
                     <InputText {...ProductInputProps} />
+                    <InputText {...PriceInputProps} keyboardType='numeric' />
+                    <InputText {...QuantityInputProps} keyboardType='numeric' />
                     <InputContainer>
-                        <InputText {...PriceInputProps} keyboardType='numeric' />
-                        <InputText {...QuantityInputProps} keyboardType='numeric' />
                     </InputContainer>
                     <AddButton {...AddButtonProps} />
                 </ModalContainer>

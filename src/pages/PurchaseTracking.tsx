@@ -8,12 +8,14 @@ import { fetchPurchases } from "../redux/slices/purchase";
 type Producs = {
     name: string;
     price: number;
-    status: string;
+    status: number;
 };
 
 const PurchaseTracking = () => {
     const [mockProducts, setMockProducts] = React.useState<Producs[]>([]);
-    const { control, handleSubmit } = useForm();
+    const [spended, setSpended] = React.useState<number>(0);
+    const [progress, setProgress] = React.useState<number>(0);
+    const { control, handleSubmit, reset } = useForm();
     const modalRef = useRef<ModalRefInterface>(null);
     const { isFullfilled, purchaseSelected } = useAppSelector(
         (state) => state.purchase
@@ -26,22 +28,43 @@ const PurchaseTracking = () => {
         }
     }, [isFullfilled]);
 
+    React.useEffect(() => {
+        function calcSpended() {
+            const sumTotalSpend: number = mockProducts.reduce((previousValue, currentValue) => (
+                previousValue + (currentValue.price * currentValue.status)
+            ), 0);
+
+            const progressValue = (sumTotalSpend / purchaseSelected.budget) * 100;
+
+            setSpended(sumTotalSpend);
+            setProgress(progressValue);
+        }
+
+        calcSpended();
+    }, [mockProducts]);
+
     const onSubmit: SubmitHandler<any> = async (data) => {
-        const newProduct:Producs = {
+        const newProduct: Producs = {
             name: data.product,
-            status: data.quantity,
-            price: data.price,
+            status: Number(data.quantity),
+            price: Number(data.price),
         };
         setMockProducts((prevState) => {
             const list = [...prevState, newProduct];
             return list;
         });
+
+        reset();
     };
+
+
 
     return (
         <PurchaseTrackingTemplate
             ModalRef={modalRef}
             purchaseSelected={purchaseSelected}
+            spended={spended}
+            progress={progress}
             ModalProps={{ title: "Novo item", modalHeight: 70 }}
             products={mockProducts}
             ProductInputProps={{ name: "product", title: "Produto", control }}

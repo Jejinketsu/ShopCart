@@ -9,6 +9,8 @@ import {
 
 export interface IPurchaseTracking {
     products: object[];
+    spended: number;
+    progress: number;
     DoneButtonProps: IButtonProps;
     AddButtonProps: IButtonProps;
     PlusButtonProps: IButtonIconProps;
