@@ -1,4 +1,5 @@
 import { FontAwesome5 } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { View } from "react-native";
 import ButtonIcon from "../../atoms/ButtonIcon";
@@ -18,8 +19,10 @@ const CardList = ({
     badge,
     leftIcon,
     rightIcon,
-    onPress = () => {},
+    onPress,
+    navigationScreen,
 }: CardListProps) => {
+    const navigation = useNavigation();
     return (
         <ItemCard onPress={onPress}>
             <Icon>
@@ -49,7 +52,7 @@ const CardList = ({
                 <ButtonIcon
                     iconName={rightIcon}
                     color="PRIMARY_1"
-                    onPress={onPress}
+                    onPress={() => navigation.navigate(navigationScreen)}
                     size={24}
                 />
             )}

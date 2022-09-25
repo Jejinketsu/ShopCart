@@ -7,4 +7,5 @@ export interface CardListProps {
     leftIcon?: FontAwesomeIconsType;
     rightIcon?: FontAwesomeIconsType;
     onPress?: () => void;
+    navigationScreen?: string;
 }

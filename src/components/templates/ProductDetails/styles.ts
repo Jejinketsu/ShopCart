@@ -10,7 +10,7 @@ export const Container = styled.View`
 export const ContentCard = styled.View`
     background-color: #fff;
     width: 100%;
-    max-height: 58%;
+    max-height: 85%;
     padding: 14px;
     margin-bottom: 24px;
     border-radius: 7px;
@@ -52,4 +52,19 @@ export const OpaqueText = styled(Text).attrs(() => ({
     margin-bottom: 10px;
     font-weight: bold;
     font-size: 18px;
+`;
+
+export const GrathContainer = styled.View`
+   width: 100%;
+   height: 226px;
+   background: #D9D9D9;
+   margin-bottom: 20px;
+`;
+
+export const Line = styled.View`
+    width: 100%;
+    height: 1px;
+    border-bottom-width: 1px;
+    border-bottom-color: #e6e6e6;
+    margin-bottom: 2px;
 `;
