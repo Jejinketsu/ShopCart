@@ -4,6 +4,7 @@ import { ModalRefInterface } from "../components/organisms/ModalSlider/interface
 import PurchaseTrackingTemplate from "../components/templates/PurchaseTracking";
 import { useAppDispatch, useAppSelector } from "../hooks/redux";
 import { fetchPurchases } from "../redux/slices/purchase";
+import { PageProps } from "../routes/interfaces";
 
 type Producs = {
     name: string;
@@ -11,7 +12,7 @@ type Producs = {
     status: number;
 };
 
-const PurchaseTracking = () => {
+const PurchaseTracking = ({ navigation }: PageProps) => {
     const [mockProducts, setMockProducts] = React.useState<Producs[]>([]);
     const [spended, setSpended] = React.useState<number>(0);
     const [progress, setProgress] = React.useState<number>(0);
@@ -30,11 +31,14 @@ const PurchaseTracking = () => {
 
     React.useEffect(() => {
         function calcSpended() {
-            const sumTotalSpend: number = mockProducts.reduce((previousValue, currentValue) => (
-                previousValue + (currentValue.price * currentValue.status)
-            ), 0);
+            const sumTotalSpend: number = mockProducts.reduce(
+                (previousValue, currentValue) =>
+                    previousValue + currentValue.price * currentValue.status,
+                0
+            );
 
-            const progressValue = (sumTotalSpend / purchaseSelected.budget) * 100;
+            const progressValue =
+                (sumTotalSpend / purchaseSelected.budget) * 100;
 
             setSpended(sumTotalSpend);
             setProgress(progressValue);
@@ -57,8 +61,6 @@ const PurchaseTracking = () => {
         reset();
     };
 
-
-
     return (
         <PurchaseTrackingTemplate
             ModalRef={modalRef}
@@ -74,7 +76,12 @@ const PurchaseTracking = () => {
                 title: "Quantidade",
                 control,
             }}
-            DoneButtonProps={{ label: "Finalizar", onPress: () => {} }}
+            DoneButtonProps={{
+                label: "Finalizar",
+                onPress: () => {
+                    navigation.replace("Root");
+                },
+            }}
             AddButtonProps={{
                 label: "Adicionar a Lista",
                 onPress: handleSubmit(onSubmit),
