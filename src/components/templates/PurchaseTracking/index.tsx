@@ -43,7 +43,7 @@ const PurchaseTrackingTemplate = ({
         <>
             <Container>
                 <ContentCard>
-                    <OpaqueText>Limite do Orçamento: {progress} %</OpaqueText>
+                    <OpaqueText>Limite do Orçamento: {progress.toFixed(2)} %</OpaqueText>
                     <ProgressBar progress={progress <= 100 ? progress : 100}  />
                     <SpendProgressContainer>
                         <SpendProgressBox>

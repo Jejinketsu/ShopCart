@@ -1,5 +1,9 @@
-import { View, Text, FlatList } from "react-native";
 import React from "react";
+import { FlatList } from "react-native";
+import { STATUS, translateStatus } from "../../../consts/status";
+import { useAppSelector } from "../../../hooks/redux";
+import CardList from "../../molecules/CardList";
+import { PurchaseDetailsProps } from "./interfaces";
 import {
     Container,
     ContentCard,
@@ -9,9 +13,6 @@ import {
     Subtitle,
     Title,
 } from "./styles";
-import { PurchaseDetailsProps } from "./interfaces";
-import { STATUS, translateStatus } from "../../../consts/status";
-import CardList from "../../molecules/CardList";
 
 const mock = [
     { title: "Produto 1", subtitle: "Tipo a" },
@@ -23,6 +24,8 @@ const mock = [
 ];
 
 const PurchaseDetails = ({ purchase }: PurchaseDetailsProps) => {
+    const { productsList } = useAppSelector((state) => state.products);
+    console.log('productsList: ', productsList);
     return (
         <Container>
             <ContentCard>
@@ -48,7 +51,8 @@ const PurchaseDetails = ({ purchase }: PurchaseDetailsProps) => {
                     <CardList
                         title={item.title}
                         subtitle={item.subtitle}
-                        onPress={() => {}}
+                        navigationScreen="ProductDetails"
+                        rightIcon="edit"
                     />
                 )}
             />
