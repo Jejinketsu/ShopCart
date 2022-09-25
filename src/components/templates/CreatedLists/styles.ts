@@ -1,5 +1,4 @@
 import styled from "styled-components/native";
-import Text from "../../atoms/Text";
 
 export const Container = styled.View`
     flex: 1;
@@ -18,6 +17,7 @@ export const ContentCard = styled.View`
 
 export const ContentList = styled.View`
     width: 100%;
+    max-height: 80%;
     margin: 20px 0px;
     border-radius: 7px;
 `;

@@ -52,7 +52,7 @@ const CardList = ({
                 <ButtonIcon
                     iconName={rightIcon}
                     color="PRIMARY_1"
-                    onPress={() => navigation.navigate(navigationScreen)}
+                    onPress={() => {}}
                     size={24}
                 />
             )}

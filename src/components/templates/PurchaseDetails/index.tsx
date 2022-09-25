@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { FlatList } from "react-native";
 import { STATUS, translateStatus } from "../../../consts/status";
@@ -14,18 +15,9 @@ import {
     Title,
 } from "./styles";
 
-const mock = [
-    { title: "Produto 1", subtitle: "Tipo a" },
-    { title: "Produto 2", subtitle: "Tipo b" },
-    { title: "Produto 3", subtitle: "Tipo c" },
-    { title: "Produto 4", subtitle: "Tipo d" },
-    { title: "Produto 5", subtitle: "Tipo e" },
-    { title: "Produto 6", subtitle: "Tipo f" },
-];
-
 const PurchaseDetails = ({ purchase }: PurchaseDetailsProps) => {
     const { productsList } = useAppSelector((state) => state.products);
-    console.log('productsList: ', productsList);
+    const navigation = useNavigation();
     return (
         <Container>
             <ContentCard>
@@ -46,12 +38,14 @@ const PurchaseDetails = ({ purchase }: PurchaseDetailsProps) => {
             <OpaqueText>Produtos</OpaqueText>
 
             <FlatList
-                data={mock}
+                data={productsList}
                 renderItem={({ item }) => (
                     <CardList
-                        title={item.title}
-                        subtitle={item.subtitle}
-                        navigationScreen="ProductDetails"
+                        title={item.name}
+                        subtitle={`R$: ${item.unityId.toFixed(2)}`}
+                        onPress={() => navigation.navigate('ProductDetails', {
+                            product: item,
+                        })}
                         rightIcon="edit"
                     />
                 )}

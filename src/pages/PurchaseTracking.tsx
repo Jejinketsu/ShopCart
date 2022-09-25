@@ -3,8 +3,10 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { ModalRefInterface } from "../components/organisms/ModalSlider/interfaces";
 import PurchaseTrackingTemplate from "../components/templates/PurchaseTracking";
 import { useAppDispatch, useAppSelector } from "../hooks/redux";
+import { createProducts } from "../redux/slices/products";
 import { fetchPurchases } from "../redux/slices/purchase";
 import { PageProps } from "../routes/interfaces";
+import { Products } from '../database/interfaces';
 
 type Producs = {
     name: string;
@@ -61,6 +63,17 @@ const PurchaseTracking = ({ navigation }: PageProps) => {
         reset();
     };
 
+    const finishProductsList = () => {
+        mockProducts.map((mockproduct) => {
+            const newproduct: Products = {
+                name: mockproduct.name,
+                quantity: mockproduct.status,
+                unityId: mockproduct.status,
+            }
+            dispatch(createProducts(newproduct));
+        })
+    }
+
     return (
         <PurchaseTrackingTemplate
             ModalRef={modalRef}
@@ -79,6 +92,7 @@ const PurchaseTracking = ({ navigation }: PageProps) => {
             DoneButtonProps={{
                 label: "Finalizar",
                 onPress: () => {
+                    finishProductsList();
                     navigation.replace("Root");
                 },
             }}

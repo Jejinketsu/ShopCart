@@ -5,6 +5,7 @@ export const Container = styled.View`
     flex: 1;
     background-color: #e6e6e6;
     padding: 18px 18px 0px 18px;
+    max-height: 50%;
 `;
 
 export const ContentCard = styled.View`
