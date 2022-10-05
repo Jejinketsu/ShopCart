@@ -2,12 +2,12 @@ import styled from "styled-components/native";
 
 export const Container = styled.View`
     flex: 1;
-    background-color: #f6f7f9;
+    background-color: ${({ theme }) => theme.colors.LIGHT};
     padding: 18px 18px 0px 18px;
 `;
 
 export const ContentCard = styled.View`
-    background-color: #fff;
+    background-color: ${({ theme }) => theme.colors.LIGHT};
     width: 100%;
     max-height: 58%;
     padding: 14px;

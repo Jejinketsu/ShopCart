@@ -2,6 +2,7 @@ import { TABLE_TYPE } from "../../../database/sqlite";
 import { IButtonProps } from "../../atoms/Button/interface";
 import { IButtonIconProps } from "../../atoms/ButtonIcon/interface";
 import { IInputTextProps } from "../../atoms/inputText/interface";
+import { SearchInterface } from "../../atoms/Search/interfaces";
 import {
     ModalRefInterface,
     ModalSliderProps,
@@ -16,10 +17,10 @@ export interface IPurchaseTracking {
     PlusButtonProps: IButtonIconProps;
     ModalProps: ModalSliderProps;
     ModalRef: React.RefObject<ModalRefInterface>;
-    ProductInputProps: IInputTextProps;
+    ProductInputProps: SearchInterface;
     PriceInputProps: IInputTextProps;
     QuantityInputProps: IInputTextProps;
-    purchaseSelected: TABLE_TYPE<'Purchases'>;
+    purchaseSelected: TABLE_TYPE<"Purchases">;
 }
 
 export interface StatusText {

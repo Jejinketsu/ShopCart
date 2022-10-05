@@ -11,6 +11,7 @@ import {
 import Text from "../../atoms/Text";
 import InputText from "../../atoms/inputText";
 import Button from "../../atoms/Button";
+import Search from "../../atoms/Search";
 
 const LoginTemplate = ({
     title,

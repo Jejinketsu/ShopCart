@@ -3,7 +3,7 @@ import { ContainerInterface } from "./interface";
 
 export const Container = styled.View<ContainerInterface>`
     width: 100%;
-    border-bottom-width: 2px;
+    border-bottom-width: ${({ overline }) => (overline ? 2 : 0)}px;
     border-bottom-color: ${({ theme, error }) =>
         error ? theme.colors.DANGER : theme.colors.ACCENTED_0};
 `;
@@ -15,13 +15,13 @@ export const InputContainer = styled.View`
     border-radius: 10px;
     flex-direction: row;
     align-items: center;
-    background-color: #e5e7ea;
+    background-color: ${({ theme }) => theme.colors.SECONDARY_0};
 `;
 
 export const InputComponent = styled.TextInput`
     height: 50px;
     width: 100%;
-    background-color: #e5e7ea;
+    background-color: ${({ theme }) => theme.colors.SECONDARY_0};
     border-radius: 10px;
     padding-left: 15px;
 `;

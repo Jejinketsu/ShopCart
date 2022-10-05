@@ -2,6 +2,7 @@ import React from "react";
 import { FlatList } from "react-native-gesture-handler";
 import InputText from "../../atoms/inputText";
 import ProgressBar from "../../atoms/ProgressBar";
+import Search from "../../atoms/Search";
 import Text from "../../atoms/Text";
 import CardList from "../../molecules/CardList";
 import ModalSlider from "../../organisms/ModalSlider";
@@ -43,17 +44,23 @@ const PurchaseTrackingTemplate = ({
         <>
             <Container>
                 <ContentCard>
-                    <OpaqueText>Limite do Orçamento: {progress.toFixed(2)} %</OpaqueText>
-                    <ProgressBar progress={progress <= 100 ? progress : 100}  />
+                    <OpaqueText>
+                        Limite do Orçamento: {progress.toFixed(2)} %
+                    </OpaqueText>
+                    <ProgressBar progress={progress <= 100 ? progress : 100} />
                     <SpendProgressContainer>
                         <SpendProgressBox>
                             <OpaqueText>Estimado:</OpaqueText>
-                            <Text color="PRIMARY_1">R$ {purchaseSelected.budget}</Text>
+                            <Text color="PRIMARY_1">
+                                R$ {purchaseSelected.budget}
+                            </Text>
                         </SpendProgressBox>
                         <Text>{">>"}</Text>
                         <SpendProgressBox>
                             <OpaqueText>Gastos:</OpaqueText>
-                            <SpendProgressText status={purchaseSelected.budget - spended}>
+                            <SpendProgressText
+                                status={purchaseSelected.budget - spended}
+                            >
                                 R$ {spended}
                             </SpendProgressText>
                         </SpendProgressBox>
@@ -68,7 +75,7 @@ const PurchaseTrackingTemplate = ({
                             <CardList
                                 title={item.name}
                                 subtitle={`R$ ${item.price}`}
-                                badge={`Quantidade: ${item.status}`}
+                                badge={`Quantidade: ${item.quantity}`}
                             />
                         )}
                         ListEmptyComponent={() => (
@@ -90,11 +97,10 @@ const PurchaseTrackingTemplate = ({
             </Container>
             <ModalSlider ref={ModalRef} {...ModalProps}>
                 <ModalContainer>
-                    <InputText {...ProductInputProps} />
-                    <InputText {...PriceInputProps} keyboardType='numeric' />
-                    <InputText {...QuantityInputProps} keyboardType='numeric' />
-                    <InputContainer>
-                    </InputContainer>
+                    <Search {...ProductInputProps} />
+                    <InputText {...PriceInputProps} keyboardType="numeric" />
+                    <InputText {...QuantityInputProps} keyboardType="numeric" />
+                    <InputContainer></InputContainer>
                     <AddButton {...AddButtonProps} />
                 </ModalContainer>
             </ModalSlider>

@@ -4,6 +4,7 @@ import MoreRoutes from "./more.routes";
 import Profile from "../pages/Profile";
 import HomeRoutes from "./home.routes";
 import { FontAwesome5 } from "@expo/vector-icons";
+import useGetTheme from "../hooks/useGetTheme";
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
@@ -17,6 +18,7 @@ const TabIcons = {
 type TabIconsName = keyof typeof TabIcons;
 
 export default function Root() {
+    const { theme } = useGetTheme();
     return (
         <Navigator
             screenOptions={({ route }) => ({
@@ -30,6 +32,8 @@ export default function Root() {
                         />
                     );
                 },
+                tabBarHideOnKeyboard: true,
+                tabBarStyle: { backgroundColor: theme.colors.LIGHT },
                 header: () => {},
             })}
         >

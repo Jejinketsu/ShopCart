@@ -5,12 +5,12 @@ import Text from "../../atoms/Text";
 
 export const Container = styled.View`
     flex: 1;
-    background-color: #e6e6e6;
+    background-color: ${({ theme }) => theme.colors.SECONDARY_0};
     padding: 18px 18px 0px 18px;
 `;
 
 export const ContentCard = styled.View<IContentCardProps>`
-    background-color: #fff;
+    background-color: ${({ theme }) => theme.colors.LIGHT};
     width: 100%;
     max-height: 58%;
     flex-direction: row;
@@ -25,8 +25,9 @@ export const ContentCard = styled.View<IContentCardProps>`
 export const BigCurrencyTitle = styled.Text<IVisibilityProps>`
     font-size: 24px;
     font-weight: bold;
-    background-color: ${({ isVisible = true }) =>
-        isVisible ? "#fff" : "#000000"};
+    color: ${({ theme }) => theme.colors.DARK};
+    background-color: ${({ theme, isVisible = true }) =>
+        isVisible ? theme.colors.LIGHT : theme.colors.DARK};
     border-radius: 7px;
 `;
 
@@ -52,7 +53,7 @@ export const NavigationButton = styled(ButtonIcon).attrs(() => ({
 `;
 
 export const NavigationText = styled(Text).attrs(() => ({
-    color: "PRIMARY_1",
+    color: "PRIMARY_0",
 }))`
     font-size: 12px;
 `;
@@ -70,6 +71,6 @@ export const Line = styled.View`
     width: 100%;
     height: 1px;
     border-bottom-width: 1px;
-    border-bottom-color: #e6e6e6;
+    border-bottom-color: ${({ theme }) => theme.colors.SECONDARY_1};
     margin-bottom: 2px;
 `;

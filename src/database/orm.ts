@@ -97,7 +97,7 @@ class LocalDatabase {
 
     formatWhere(where: object) {
         return Object.entries(where)
-            .map(([key, value]) => `${key} = ${this.isString(value)}`)
+            .map(([key, value]) => `${key} ${this.isString(value)}`)
             .join(" AND ");
     }
 
@@ -109,7 +109,9 @@ class LocalDatabase {
     }
 
     isString(value: any): string {
-        return typeof value === "string" ? `'${value}'` : value;
+        if (typeof value === "string") return `= '${value}'`;
+        if (Array.isArray(value)) return `IN (${value.join(",")})`;
+        return `= ${value}`;
     }
 }
 

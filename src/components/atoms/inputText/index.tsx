@@ -10,7 +10,9 @@ const InputText = ({
     control,
     title,
     iconName,
+    overline = false,
     error,
+    onChangeAction,
     ...rest
 }: IInputTextProps) => {
     const { field } = useController({
@@ -18,8 +20,14 @@ const InputText = ({
         defaultValue: "",
         name,
     });
+
+    const handleChangeText = (text) => {
+        field.onChange(text);
+        if (onChangeAction) onChangeAction(text);
+    };
+
     return (
-        <Container error={!!error}>
+        <Container error={!!error} overline={overline}>
             {title && <Text color="PRIMARY_1">{title}</Text>}
             <InputContainer>
                 {iconName && (
@@ -29,7 +37,7 @@ const InputText = ({
                     {...rest}
                     inputRef={field.ref}
                     value={field.value}
-                    onChangeText={field.onChange}
+                    onChangeText={handleChangeText}
                 />
             </InputContainer>
             {error && <Text color="DANGER">{error}</Text>}

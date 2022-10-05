@@ -7,12 +7,22 @@ import Purchases from "../pages/Purchases";
 import PurchaseTracking from "../pages/PurchaseTracking";
 import PurchaseDetails from "../pages/PurchaseDetails";
 import ProductDetails from "../pages/ProductDetails";
+import useGetTheme from "../hooks/useGetTheme";
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
 export default function HomeRoutes() {
+    const { theme } = useGetTheme();
     return (
-        <Navigator screenOptions={{ headerShown: true }}>
+        <Navigator
+            screenOptions={{
+                headerShown: true,
+                headerStyle: {
+                    backgroundColor: theme.colors.LIGHT,
+                },
+                headerTitleStyle: { color: theme.colors.DARK },
+            }}
+        >
             <Screen
                 name="StackHome"
                 component={Home}

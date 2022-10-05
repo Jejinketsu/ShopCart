@@ -39,7 +39,7 @@ const Register = ({ navigation }: PageProps) => {
     useEffect(() => {
         if (user) {
             reset();
-            navigation.navigate("Home");
+            navigation.navigate("StackHome");
         }
     }, [user]);
 
@@ -51,6 +51,7 @@ const Register = ({ navigation }: PageProps) => {
                 control,
                 placeholder: "Nome",
                 iconName: "user",
+                overline: true,
                 error: errors.name?.message,
             }}
             EmailInputProps={{
@@ -58,6 +59,7 @@ const Register = ({ navigation }: PageProps) => {
                 control,
                 iconName: "mail",
                 placeholder: "E-mail",
+                overline: true,
                 error: errors.email?.message,
             }}
             PasswordInputProps={{
@@ -66,6 +68,7 @@ const Register = ({ navigation }: PageProps) => {
                 iconName: "lock",
                 placeholder: "Senha",
                 secureTextEntry: true,
+                overline: true,
                 error: errors.password?.message,
             }}
             LoginButtonProps={{

@@ -10,7 +10,6 @@ export interface Products {
     name: string;
     tag?: string;
     unityId: number;
-    quantity?: number;
     market?: string;
 }
 
@@ -37,6 +36,6 @@ export interface Transactions {
     purchaseId: number;
     price: number;
     quantity: number;
-    timeStamp: Date;
+    timeStamp: string;
     local?: string;
 }

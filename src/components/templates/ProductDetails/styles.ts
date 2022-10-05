@@ -3,12 +3,12 @@ import Text from "../../atoms/Text";
 
 export const Container = styled.View`
     flex: 1;
-    background-color: #e6e6e6;
+    background-color: ${({ theme }) => theme.colors.SECONDARY_1};
     padding: 18px 18px 0px 18px;
 `;
 
 export const ContentCard = styled.View`
-    background-color: #fff;
+    background-color: ${({ theme }) => theme.colors.LIGHT};
     width: 100%;
     max-height: 85%;
     padding: 14px;

@@ -7,9 +7,12 @@ export interface IInputTextProps extends TextInputProps {
     control: Control<any>;
     title?: string;
     error?: string;
+    overline?: boolean;
     iconName?: keyof typeof Feather.glyphMap;
+    onChangeAction?: (text: string) => void;
 }
 
 export interface ContainerInterface {
     error: boolean;
+    overline: boolean;
 }

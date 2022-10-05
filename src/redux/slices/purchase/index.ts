@@ -3,9 +3,9 @@ import type { RootState } from "../../store";
 
 import { DB, TABLE_TYPE } from "../../../database/sqlite";
 
-import { PurchaseState } from "./interfaces";
+import { finishPurchaseDTO, PurchaseState } from "./interfaces";
 import localDatabase from "../../../database/orm";
-import { join } from "@prisma/client/runtime";
+import store from "../../store";
 
 const initialState: PurchaseState = {
     isFullfilled: false,
@@ -48,7 +48,6 @@ export const fetchPurchases = createAsyncThunk(
     "purchases/fulfilled",
     async () => {
         const purchases = await localDatabase.select("Purchases", null);
-        console.log("purchases", purchases);
         return purchases;
     }
 );
@@ -61,7 +60,44 @@ export const createPurchase = createAsyncThunk(
     }
 );
 
-export const actions = purchaseSlice.actions;
+export const finishPurchase = createAsyncThunk(
+    "purchases/finish",
+    async ({ products, purchaseId }: finishPurchaseDTO) => {
+        for (const product of products) {
+            const [productAlreadyExists] = await localDatabase.select(
+                "Products",
+                {
+                    name: product.name,
+                }
+            );
+
+            let result: TABLE_TYPE<"Products"> | undefined = undefined;
+            if (!productAlreadyExists) {
+                result = await localDatabase.create("Products", {
+                    name: product.name,
+                    market: "Mercado",
+                    tag: "tags",
+                    unityId: 1,
+                });
+            }
+
+            await localDatabase.create("Transactions", {
+                productId: result ? result.id : productAlreadyExists.id,
+                purchaseId,
+                quantity: product.quantity,
+                price: product.price,
+                userId: 1,
+            });
+        }
+    }
+);
+
+export const purchaseActions = {
+    ...purchaseSlice.actions,
+    fetchPurchases,
+    createPurchase,
+    finishPurchase,
+};
 
 export const selectPurchase = (state: RootState) => state.purchase;
 

@@ -11,6 +11,8 @@ import {
     Title,
 } from "./styles";
 
+import { format, parseISO } from "date-fns";
+
 const mockData = [
     { value: 25.5, title: "Compra da Feira", date: "11/12", time: "13:32" },
     { value: 344, title: "Churrasco", date: "09/12", time: "13:32" },
@@ -35,12 +37,26 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
 
             <ContentCard>
                 <GrathContainer />
-                <OpaqueText>Últimas vezes que esse produto foi comprado</OpaqueText>
+                <OpaqueText>
+                    Últimas vezes que esse produto foi comprado
+                </OpaqueText>
                 <FlatList
-                    data={mockData}
-                    renderItem={({ item, index }) => (
-                        <ItemCard key={index + item.title} {...item} />
-                    )}
+                    data={product.transactions}
+                    renderItem={({ item, index }) => {
+                        const timestamp = parseISO(item.timeStamp);
+                        const date = format(timestamp, "dd/MM");
+                        const time = format(timestamp, "HH:mm");
+
+                        return (
+                            <ItemCard
+                                key={index + item.title}
+                                title={"Compra random"}
+                                value={item.price}
+                                date={date}
+                                time={time}
+                            />
+                        );
+                    }}
                     ItemSeparatorComponent={() => <Line />}
                 />
             </ContentCard>

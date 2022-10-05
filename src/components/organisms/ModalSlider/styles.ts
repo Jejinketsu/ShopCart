@@ -28,7 +28,7 @@ export const AnimatedModal = styled(Animated.View).attrs(
     bottom: 0;
     position: absolute;
     height: ${({ modalHeight }) => (modalHeight ? modalHeight : 90)}%;
-    background-color: #fff;
+    background-color: ${({ theme }) => theme.colors.LIGHT};
     width: 100%;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;

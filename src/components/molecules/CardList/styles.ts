@@ -2,11 +2,12 @@ import styled from "styled-components/native";
 import Text from "../../atoms/Text";
 
 export const ItemCard = styled.TouchableOpacity`
-    background-color: #fff;
+    background-color: ${({ theme }) => theme.colors.LIGHT};
     width: 100%;
     height: 80px;
     padding: 10px;
     margin-bottom: 10px;
+    shadow-color: ${({ theme }) => theme.colors.DARK};
     elevation: 2;
     border-radius: 7px;
     flex-direction: row;
@@ -17,7 +18,7 @@ export const ItemCard = styled.TouchableOpacity`
 export const Icon = styled.View`
     width: 50px;
     height: 50px;
-    background-color: #c8cbd1;
+    background-color: ${({ theme }) => theme.colors.SECONDARY_1};
     justify-content: center;
     align-items: center;
     border-radius: 50px;

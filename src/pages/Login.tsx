@@ -17,6 +17,7 @@ const Login = ({ navigation }: PageProps) => {
     }, [user]);
 
     const onSubmit: SubmitHandler<IFormInput> = async (data) => {
+        console.log(data);
         dispatch(authActions.login(data));
     };
 
@@ -32,6 +33,7 @@ const Login = ({ navigation }: PageProps) => {
                 control: control,
                 placeholder: "E-mail",
                 iconName: "mail",
+                overline: true,
             }}
             PasswordInputProps={{
                 name: "password",
@@ -39,6 +41,7 @@ const Login = ({ navigation }: PageProps) => {
                 placeholder: "Senha",
                 iconName: "lock",
                 secureTextEntry: true,
+                overline: true,
             }}
             LoginButtonProps={{
                 label: "Entrar",

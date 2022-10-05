@@ -42,7 +42,11 @@ const CardList = ({
                             justifyContent: "space-between",
                         }}
                     >
-                        <OpaqueText>{subtitle}</OpaqueText>
+                        <OpaqueText>
+                            {typeof subtitle === "string"
+                                ? subtitle
+                                : `R$ ${subtitle.toFixed(2)}`}
+                        </OpaqueText>
                         <StatusText color="SUCCESS">{badge}</StatusText>
                     </View>
                 )}

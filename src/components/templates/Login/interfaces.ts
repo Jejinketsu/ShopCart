@@ -1,5 +1,6 @@
 import { IButtonProps } from "../../atoms/Button/interface";
 import { IInputTextProps } from "../../atoms/inputText/interface";
+import { SearchInterface } from "../../atoms/Search/interfaces";
 
 export interface LoginProps {
     title: string;

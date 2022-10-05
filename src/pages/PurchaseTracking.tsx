@@ -3,39 +3,53 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { ModalRefInterface } from "../components/organisms/ModalSlider/interfaces";
 import PurchaseTrackingTemplate from "../components/templates/PurchaseTracking";
 import { useAppDispatch, useAppSelector } from "../hooks/redux";
-import { createProducts } from "../redux/slices/products";
-import { fetchPurchases } from "../redux/slices/purchase";
+import { createProducts, productActions } from "../redux/slices/products";
+import { purchaseActions } from "../redux/slices/purchase";
 import { PageProps } from "../routes/interfaces";
-import { Products } from '../database/interfaces';
+import { Products } from "../database/interfaces";
 
 type Producs = {
     name: string;
     price: number;
-    status: number;
+    quantity: number;
 };
 
 const PurchaseTracking = ({ navigation }: PageProps) => {
-    const [mockProducts, setMockProducts] = React.useState<Producs[]>([]);
+    const [listProducts, setListProducts] = React.useState<Producs[]>([]);
     const [spended, setSpended] = React.useState<number>(0);
     const [progress, setProgress] = React.useState<number>(0);
-    const { control, handleSubmit, reset } = useForm();
+    const { control, handleSubmit, reset, setValue } = useForm();
     const modalRef = useRef<ModalRefInterface>(null);
     const { isFullfilled, purchaseSelected } = useAppSelector(
         (state) => state.purchase
     );
+    const { isFullfilled: productFulfilled, productList } = useAppSelector(
+        (state) => state.products
+    );
     const dispatch = useAppDispatch();
+    console.log("productList:", productList);
+    const [search, setSearch] = React.useState<string[]>([]);
 
     React.useEffect(() => {
         if (!isFullfilled) {
-            dispatch(fetchPurchases());
+            dispatch(purchaseActions.fetchPurchases());
         }
-    }, [isFullfilled]);
+        if (!productFulfilled) {
+            dispatch(productActions.fetchProducts());
+        }
+    }, [isFullfilled, productFulfilled]);
+
+    React.useEffect(() => {
+        return () => {
+            dispatch(productActions.reset());
+        };
+    }, []);
 
     React.useEffect(() => {
         function calcSpended() {
-            const sumTotalSpend: number = mockProducts.reduce(
+            const sumTotalSpend: number = listProducts.reduce(
                 (previousValue, currentValue) =>
-                    previousValue + currentValue.price * currentValue.status,
+                    previousValue + currentValue.price * currentValue.quantity,
                 0
             );
 
@@ -47,15 +61,15 @@ const PurchaseTracking = ({ navigation }: PageProps) => {
         }
 
         calcSpended();
-    }, [mockProducts]);
+    }, [listProducts]);
 
     const onSubmit: SubmitHandler<any> = async (data) => {
         const newProduct: Producs = {
             name: data.product,
-            status: Number(data.quantity),
+            quantity: Number(data.quantity),
             price: Number(data.price),
         };
-        setMockProducts((prevState) => {
+        setListProducts((prevState) => {
             const list = [...prevState, newProduct];
             return list;
         });
@@ -63,16 +77,15 @@ const PurchaseTracking = ({ navigation }: PageProps) => {
         reset();
     };
 
-    const finishProductsList = () => {
-        mockProducts.map((mockproduct) => {
-            const newproduct: Products = {
-                name: mockproduct.name,
-                quantity: mockproduct.status,
-                unityId: mockproduct.status,
-            }
-            dispatch(createProducts(newproduct));
-        })
-    }
+    const handleFinishPurchase = () => {
+        dispatch(
+            purchaseActions.finishPurchase({
+                products: listProducts,
+                purchaseId: purchaseSelected.id,
+            })
+        );
+        navigation.replace("StackHome");
+    };
 
     return (
         <PurchaseTrackingTemplate
@@ -81,8 +94,33 @@ const PurchaseTracking = ({ navigation }: PageProps) => {
             spended={spended}
             progress={progress}
             ModalProps={{ title: "Novo item", modalHeight: 70 }}
-            products={mockProducts}
-            ProductInputProps={{ name: "product", title: "Produto", control }}
+            products={listProducts}
+            ProductInputProps={{
+                control,
+                data: search,
+                onSearch: (value) => {
+                    const filtered = productList
+                        .filter((item) =>
+                            item.name
+                                ?.toUpperCase()
+                                .includes(value.toUpperCase())
+                        )
+                        .map((item) => item.name);
+                    setSearch(filtered);
+                },
+                onItemSelected: (value) => {
+                    const product = productList.find(
+                        (item) => item.name === value
+                    );
+                    setValue("product", product?.name);
+                },
+                showList: true,
+                serchInputProps: {
+                    name: "product",
+                    title: "Produto",
+                    control,
+                },
+            }}
             PriceInputProps={{ name: "price", title: "Preço", control }}
             QuantityInputProps={{
                 name: "quantity",
@@ -91,10 +129,7 @@ const PurchaseTracking = ({ navigation }: PageProps) => {
             }}
             DoneButtonProps={{
                 label: "Finalizar",
-                onPress: () => {
-                    finishProductsList();
-                    navigation.replace("Root");
-                },
+                onPress: handleFinishPurchase,
             }}
             AddButtonProps={{
                 label: "Adicionar a Lista",

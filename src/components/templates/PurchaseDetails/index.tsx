@@ -15,7 +15,11 @@ import {
     Title,
 } from "./styles";
 
-const PurchaseDetails = ({ purchase }: PurchaseDetailsProps) => {
+const PurchaseDetails = ({
+    purchase,
+    products,
+    cardOnPress,
+}: PurchaseDetailsProps) => {
     const { productsList } = useAppSelector((state) => state.products);
     const navigation = useNavigation();
     return (
@@ -38,15 +42,12 @@ const PurchaseDetails = ({ purchase }: PurchaseDetailsProps) => {
             <OpaqueText>Produtos</OpaqueText>
 
             <FlatList
-                data={productsList}
+                data={products}
                 renderItem={({ item }) => (
                     <CardList
                         title={item.name}
-                        subtitle={`R$: ${item.unityId.toFixed(2)}`}
-                        onPress={() => navigation.navigate('ProductDetails', {
-                            product: item,
-                        })}
-                        rightIcon="edit"
+                        subtitle={item.transactions[0].price}
+                        onPress={() => cardOnPress(item)}
                     />
                 )}
             />

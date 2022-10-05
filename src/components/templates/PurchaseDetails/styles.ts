@@ -3,13 +3,12 @@ import Text from "../../atoms/Text";
 
 export const Container = styled.View`
     flex: 1;
-    background-color: #e6e6e6;
+    background-color: ${({ theme }) => theme.colors.SECONDARY_0};
     padding: 18px 18px 0px 18px;
-    max-height: 50%;
 `;
 
 export const ContentCard = styled.View`
-    background-color: #fff;
+    background-color: ${({ theme }) => theme.colors.LIGHT};
     width: 100%;
     max-height: 58%;
     padding: 14px;
@@ -28,6 +27,7 @@ export const Title = styled.Text`
     font-size: 24px;
     font-weight: bold;
     border-radius: 7px;
+    color: ${({ theme }) => theme.colors.DARK};
 `;
 
 export const Subtitle = styled.Text`
