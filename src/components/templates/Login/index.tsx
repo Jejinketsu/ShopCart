@@ -11,7 +11,6 @@ import {
 import Text from "../../atoms/Text";
 import InputText from "../../atoms/inputText";
 import Button from "../../atoms/Button";
-import Search from "../../atoms/Search";
 
 const LoginTemplate = ({
     title,
@@ -20,32 +19,28 @@ const LoginTemplate = ({
     PasswordInputProps,
     LoginButtonProps,
     RegisterButtonProps,
-}: LoginProps) => {
+}: /*     GoogleSignInButtonProps, */
+LoginProps) => {
     return (
         <Container>
             <Logo source={LogoIcon} />
 
             <FormContainer>
                 <Text typeScale="h4">{title || "default"}</Text>
-
                 {NameInputProps && (
                     <TextField>
                         <InputText {...NameInputProps} />
                     </TextField>
                 )}
-
                 <TextField>
                     <InputText {...EmailInputProps} />
                 </TextField>
-
                 <TextField>
                     <InputText {...PasswordInputProps} />
                 </TextField>
-
                 <ButtonContainer>
                     <Button {...LoginButtonProps} />
                 </ButtonContainer>
-
                 {RegisterButtonProps && (
                     <ButtonContainer>
                         <Button {...RegisterButtonProps} />

@@ -78,10 +78,12 @@ const PurchaseTracking = ({ navigation }: PageProps) => {
     };
 
     const handleFinishPurchase = () => {
+        console.log("spended", spended);
         dispatch(
             purchaseActions.finishPurchase({
                 products: listProducts,
                 purchaseId: purchaseSelected.id,
+                released_Budget: spended,
             })
         );
         navigation.replace("StackHome");

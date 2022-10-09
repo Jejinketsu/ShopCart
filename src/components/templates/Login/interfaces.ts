@@ -9,6 +9,10 @@ export interface LoginProps {
     PasswordInputProps: IInputTextProps;
     LoginButtonProps: IButtonProps;
     RegisterButtonProps?: IButtonProps;
+    /*     GoogleSignInButtonProps: {
+        onPress: () => void;
+        disabled: boolean;
+    }; */
 }
 
 export interface IFormInput {

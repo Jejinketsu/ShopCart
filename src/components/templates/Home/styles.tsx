@@ -74,3 +74,8 @@ export const Line = styled.View`
     border-bottom-color: ${({ theme }) => theme.colors.SECONDARY_1};
     margin-bottom: 2px;
 `;
+
+export const EmptyListContainer = styled.View`
+    width: 100%;
+    align-items: center;
+`;

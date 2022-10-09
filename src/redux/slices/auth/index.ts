@@ -3,6 +3,15 @@ import localDatabase from "../../../database/orm";
 import { DB } from "../../../database/sqlite";
 import { IAuthState } from "./interfaces";
 
+import * as AuthSession from "expo-auth-session";
+
+interface AuthResponse {
+    type: string;
+    params: {
+        access_token: string;
+    };
+}
+
 const initialState: IAuthState = {
     user: undefined,
 };
@@ -31,7 +40,39 @@ const authSlice = createSlice({
         builder.addCase(login.rejected, (_, action) => {
             console.error(action.error);
         });
+        builder.addCase(loginWithGoogle.fulfilled, (state, action) => {
+            state.user = action.payload;
+        });
+        builder.addCase(loginWithGoogle.rejected, (_, action) => {
+            console.error(action.error);
+        });
     },
+});
+
+const loginWithGoogle = createAsyncThunk("auth/loginWithGoogle", async () => {
+    const CLIENT_ID =
+        "1024343412766-2a9c63eqtlqfalsk6tjtm9b9chkf0vg5.apps.googleusercontent.com";
+    const REDIRECT_URI = "https://auth.expo.io/@jejinketsu/shopcart";
+    const RESPONSE_TYPE = "token";
+    const SCOPE = encodeURI("profile email");
+
+    const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPE}`;
+
+    const { params, type } = (await AuthSession.startAsync({
+        authUrl,
+    })) as AuthResponse;
+
+    if (type === "success") {
+        const response = await fetch(
+            `https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${params.access_token}`
+        );
+        const userInfo = await response.json();
+        return {
+            id: userInfo.id,
+            name: userInfo.given_name,
+            email: userInfo.email,
+        };
+    }
 });
 
 const login = createAsyncThunk(
@@ -55,6 +96,11 @@ const createAccount = createAsyncThunk(
     }
 );
 
-export const authActions = { ...authSlice.actions, createAccount, login };
+export const authActions = {
+    ...authSlice.actions,
+    createAccount,
+    login,
+    loginWithGoogle,
+};
 
 export default authSlice.reducer;

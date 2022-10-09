@@ -13,4 +13,5 @@ export interface finishPurchaseDTO {
         quantity: number;
     }[];
     purchaseId: number;
+    released_Budget: number;
 }

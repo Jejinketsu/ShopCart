@@ -1,5 +1,8 @@
+import { TABLE_TYPE } from "../../../database/sqlite";
+
 export interface IHomeProps {
     NavigationButtonsProp: NavigationButton[];
+    lastPurchase: TABLE_TYPE<"Purchases">[];
 }
 
 interface NavigationButton {

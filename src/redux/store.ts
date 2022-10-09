@@ -7,10 +7,12 @@ import purchaseReducer from "./slices/purchase";
 import purchaseDetailReducer from "./slices/purchaseDetail";
 import productsReducer from "./slices/products";
 import productDetail from "./slices/productDetail";
+import homeSlice from "./slices/home";
 
 const store = configureStore({
     reducer: {
         auth: authReducer,
+        home: homeSlice,
         global: globalReducer,
         counter: counterReducer,
         purchase: purchaseReducer,

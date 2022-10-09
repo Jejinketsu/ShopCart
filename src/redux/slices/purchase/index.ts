@@ -62,7 +62,7 @@ export const createPurchase = createAsyncThunk(
 
 export const finishPurchase = createAsyncThunk(
     "purchases/finish",
-    async ({ products, purchaseId }: finishPurchaseDTO) => {
+    async ({ products, purchaseId, released_Budget }: finishPurchaseDTO) => {
         for (const product of products) {
             const [productAlreadyExists] = await localDatabase.select(
                 "Products",
@@ -88,6 +88,12 @@ export const finishPurchase = createAsyncThunk(
                 price: product.price,
                 userId: 1,
             });
+            
+            await localDatabase.update(
+                "Purchases",
+                { released_Budget: released_Budget },
+                { id: purchaseId }
+            );
         }
     }
 );

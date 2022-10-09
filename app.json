@@ -3,15 +3,10 @@
         "owner": "jejinketsu",
         "name": "shopcart",
         "slug": "shopcart",
+        "scheme": "shopcart",
         "version": "1.0.0",
         "assetBundlePatterns": [
             "**/*"
-        ],
-        "android": {
-            "googleServicesFile": "./google-services.json"
-        },
-        "plugins": [
-            "@react-native-google-signin/google-signin"
         ]
     }
 }

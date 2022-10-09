@@ -66,8 +66,9 @@ class LocalDatabase {
         where: TABLE_TYPE<T>
     ): Promise<DB[T][]> {
         const sql = `UPDATE ${table} SET ${Object.keys(entry)
-            .map((key) => `${key} = ?`)
+            .map((key) => `${key} ${this.isString(entry[key])}`)
             .join(",")} WHERE ${this.formatWhere(where)}`;
+
         const result = await this.client.execSql(sql, Object.values(entry));
         return result.rows._array as unknown as DB[T][];
     }

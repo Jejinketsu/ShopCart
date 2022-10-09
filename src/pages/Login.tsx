@@ -5,10 +5,15 @@ import { IFormInput } from "../components/templates/Login/interfaces";
 import { useAppDispatch, useAppSelector } from "../hooks/redux";
 import { PageProps } from "../routes/interfaces";
 import { authActions } from "../redux/slices/auth";
+
+import { Alert } from "react-native";
+
 const Login = ({ navigation }: PageProps) => {
     const { control, handleSubmit } = useForm<IFormInput>({});
     const { user } = useAppSelector((state) => state.auth);
     const dispatch = useAppDispatch();
+
+    const [userInfo, setUserInfo] = React.useState(null);
 
     useEffect(() => {
         if (user) {
@@ -23,6 +28,15 @@ const Login = ({ navigation }: PageProps) => {
 
     function handleRegister() {
         navigation.navigate("Register");
+    }
+
+    async function handleLoginWithGoogle() {
+        try {
+            await dispatch(authActions.loginWithGoogle());
+        } catch (error) {
+            console.error(error);
+            Alert.alert("Erro ao fazer login com o Google");
+        }
     }
 
     return (
@@ -45,7 +59,7 @@ const Login = ({ navigation }: PageProps) => {
             }}
             LoginButtonProps={{
                 label: "Entrar",
-                onPress: handleSubmit(onSubmit),
+                onPress: handleLoginWithGoogle,
                 color: "ACCENTED_0",
             }}
             RegisterButtonProps={{
