@@ -6,6 +6,7 @@ import React, {
     useCallback,
 } from "react";
 import { Animated, Dimensions } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 
 import { ModalRefInterface, ModalSliderProps } from "./interfaces";
 import {
@@ -114,7 +115,9 @@ const ModalSlider = forwardRef(
                                         />
                                     </ModalHeader>
                                 )}
-                                {children}
+                                <ScrollView>
+                                    {children}
+                                </ScrollView>
                             </>
                         </AnimatedModal>
                     </AnimatedContainer>

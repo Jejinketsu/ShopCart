@@ -56,7 +56,7 @@ export const OpaqueText = styled(Text).attrs(() => ({
 
 export const GrathContainer = styled.View`
    width: 100%;
-   height: 226px;
+   height: 325px;
    background: #D9D9D9;
    margin-bottom: 20px;
 `;
