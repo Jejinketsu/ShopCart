@@ -59,7 +59,7 @@ const Login = ({ navigation }: PageProps) => {
             }}
             LoginButtonProps={{
                 label: "Entrar",
-                onPress: handleLoginWithGoogle,
+                onPress: handleSubmit(onSubmit),
                 color: "ACCENTED_0",
             }}
             RegisterButtonProps={{
